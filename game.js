@@ -68,6 +68,19 @@ function nextSequence() {
 // }
 // // }
 
+//this function with promise works - need to insert at right time to playback.
+var sleep = (time) => {
+    return new Promise((resolve) => setTimeout(resolve, time))
+  }
+  
+  var sequencePlayback = async () => {
+    for (let i = 0; i < gamePattern.length; i++) {
+      await sleep(500);
+      console.log(i);
+      $("#" + gamePattern[i]).fadeIn(100).fadeOut(100).fadeIn(100);
+      makeSound(gamePattern[i])};
+    }
+
 // var looper = async function () {
 //     for (var i = 1; i < level; i++) {
 //       await new Promise(function (resolve, reject) {
