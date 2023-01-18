@@ -1,11 +1,15 @@
-var gamePattern= [];
+//variable for button colors
 var buttonColors = ["red","blue","green","yellow"];
+//arrays to hold sequences of colors
+var gamePattern= [];
 var userClickPattern = [];
 
+//variables for game started and level 
 var gameStarted = false;
 var level = 0;
 
- $(document).keydown(function () {
+//function at start of game, detects key down.
+$(document).keydown(function () {
     if (!gameStarted) {
         $("#level-title").text("Level " + level);
         nextSequence();
@@ -13,6 +17,7 @@ var level = 0;
         }
     });
 
+//function to detect click on color, sound and animation.    
 $(".btn").click(function() {
     var userChosenColor = $(this).attr("id");
     userClickPattern.push(userChosenColor);
@@ -21,16 +26,17 @@ $(".btn").click(function() {
     checkAnswer(userClickPattern.length-1);
 });
 
+//function to check answer fromn user, end game if wrong, continue if correct.
 function checkAnswer(currentLevel) {
     if (userClickPattern[currentLevel]===gamePattern[currentLevel]) { 
-        console.log("Success");
+        //console.log("Success"); console logs for checking the checker
         if (userClickPattern.length === gamePattern.length) {
             setTimeout(function () {
                 nextSequence();
               }, 1000);
     } 
     }   else {
-        console.log("wrong");
+        // console.log("wrong"); checking the checker
         makeSound("wrong");
         $("body").addClass("game-over");
         setTimeout(function() {
@@ -42,7 +48,7 @@ function checkAnswer(currentLevel) {
     }
 
 
-
+//gets next color in sequence.
 function nextSequence() {
     userClickPattern = [];
     level++;
@@ -54,17 +60,20 @@ function nextSequence() {
     makeSound(randomChosenColor);
 }
 
+//animates the click on color
 function animatePress(currentColor) {
     $("#"+ currentColor).addClass("pressed");
     setTimeout(function() {
         $("#" + currentColor).removeClass("pressed");},100)
     }
 
+//sound function for colors
 function makeSound(name) {
     var audio = new Audio("sounds/" + name + ".mp3");
     audio.play();
 }
 
+//starts game over, called on wrong answer.
 function startOver() {
     gameStarted = false;
     level = 0;
