@@ -60,6 +60,29 @@ function nextSequence() {
     makeSound(randomChosenColor);
 }
 
+// function sequencePlayback() {
+//     for (var i = 0; i <= level; i++) {
+//         // setTimeout (function () {
+//             $("#" + gamePattern[i]).fadeIn(100).fadeOut(100).fadeIn(100);
+//             makeSound(gamePattern[i])} //,100);      
+// }
+// // }
+
+// var looper = async function () {
+//     for (var i = 1; i < level; i++) {
+//       await new Promise(function (resolve, reject) {
+//         setTimeout(function () {
+//             $("#" + gamePattern[i]).fadeIn(100).fadeOut(100).fadeIn(100);
+//             makeSound(gamePattern[i])
+//         }, 500);
+//       });
+//     }
+//     return true;
+//   }
+//   looper().then(function(){console.log("DONE!")});
+  
+
+
 //animates the click on color
 function animatePress(currentColor) {
     $("#"+ currentColor).addClass("pressed");
